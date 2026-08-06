@@ -5,12 +5,10 @@ import { Typography } from '@material-tailwind/react';
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('New');
-  const [videos, setVideos] = useState([]); // null emas, bo'sh massiv qilamiz, shunda oq sahifa bermaydi
+  const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-    // Har safar kategoriya o'zgarganda videolarni tozalaydi
     setVideos([]); 
-    
     fetchFromAPI(`search?q=${selectedCategory}`)
       .then(data => {
         if (data && data.items) {
@@ -18,7 +16,7 @@ export default function Home() {
         }
       })
       .catch(error => {
-        console.error('Error fetching data:', error);
+        console.error('Error:', error);
       });
   }, [selectedCategory]);
 
