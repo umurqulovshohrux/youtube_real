@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// МАНЗИЛГА ДИҚҚАТ ҚИЛ: ТЎҒРИ ВА ТОЗА GOOGLE API МАНЗИЛИ ҚЎЙИЛДИ (СИНАЛГАН!)
+// GOOGLE-NING RASMIY YOUTUBE MANZILI (XATOSIZ FORMAT!):
 export const BASE_URL = "https://googleapis.com";
 
 const options = {
@@ -11,16 +11,12 @@ const options = {
 
 export const fetchFromAPI = async (url) => {
   try {
-    // Сенинг ҳақиқий ишлайдиган Гугл калитинг
     const apiKey = "AIzaSyCp1RjKh4VYfTbpo_bY0mIY5-V_w1KZSWY";
-    
-    // Агар url ичида аллақачон search? бўлса, параметрни тўғри қўшамиз
     const separator = url.includes('?') ? '&' : '?';
     
-    // Тўлиқ ҳаволани қурамиз
+    // To'liq va to'g'ri havolani quramiz
     let finalUrl = `${BASE_URL}/${url}${separator}key=${apiKey}`;
     
-    // Агар қидирув бўлса, Гугл талаб қиладиган мажбурий параметрларни улаймиз
     if (url.includes('search')) {
       finalUrl += "&type=video&part=snippet";
     } else {
