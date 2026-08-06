@@ -1,24 +1,27 @@
 import axios from "axios";
 
-// To'g'ri API manzili (Buni o'zgartirma jigar!):
-export const BASE_URL = "https://youtube-v31.p.rapidapi.com";
-
-const options = {
-  params: {
-    maxResults: 50,
-  },
-  headers: {
-    "X-RapidAPI-Key": "73e9701077mshbc7b83f06fcfa05p1e2cfajsn91c06880da67",
-    "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com", // Bu ham to'g'rilandi!
-  }
-};
+// Google-ning rasmiy va bloklanmaydigan YouTube API manzili:
+export const BASE_URL = "https://googleapis.com";
 
 export const fetchFromAPI = async (url) => {
   try {
-    const response = await axios.get(`${BASE_URL}/${url}`, options);
+    // Sening shaxsiy, rasmiy oltin kaliting:
+    const apiKey = "AIzaSyCp1RjKh4VYfTbpo_bY0mIY5-V_w1KZSWY";
+    
+    let separator = url.includes('?') ? '&' : '?';
+    let finalUrl = `${BASE_URL}/${url}${separator}key=${apiKey}`;
+    
+    // Agar loyihangda search? deb so'rov ketayotgan bo'lsa, Google API formatiga moslaymiz:
+    if (url.includes('search')) {
+      finalUrl += "&type=video&part=snippet";
+    } else {
+      finalUrl += "&part=snippet";
+    }
+
+    const response = await axios.get(finalUrl);
     return response.data;
   } catch (err) {
-    console.error("Error fetching data from API:", err);
+    console.error("Google API Error:", err);
     throw err;
   }
 };
