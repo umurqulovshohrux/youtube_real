@@ -1,16 +1,15 @@
 import axios from "axios";
 
-// Bu butun dunyo bo'yicha ishlaydigan eng barqaror YouTube API manzili
-export const BASE_URL = "https://rapidapi.com";
+// To'g'ri API manzili (Buni o'zgartirma jigar!):
+export const BASE_URL = "https://youtube-v31.p.rapidapi.com";
 
 const options = {
   params: {
     maxResults: 50,
   },
   headers: {
-    // MANA SHU YANGI VA SINALGAN TEKIN KALITNI QO'YDIK:
     "X-RapidAPI-Key": "73e9701077mshbc7b83f06fcfa05p1e2cfajsn91c06880da67",
-    "X-RapidAPI-Host": "://rapidapi.com",
+    "X-RapidAPI-Host": "youtube-v31.p.rapidapi.com", // Bu ham to'g'rilandi!
   }
 };
 
